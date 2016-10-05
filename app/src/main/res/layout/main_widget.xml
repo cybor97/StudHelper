@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/header_background"/>
+
+    <TextView
+        android:id="@+id/time_tv"
+        android:background="#AA232323"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/clock"
+        android:layout_toStartOf="@+id/clock"
+        android:text="@string/time_preinit"/>
+
+    <AnalogClock
+        android:id="@+id/clock"
+        android:background="#AA232323"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/info_tv"
+        android:background="#AA232323"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toEndOf="@+id/clock"
+        android:layout_toRightOf="@+id/clock"
+        android:gravity="end"
+        android:text="@string/info_preinit"/>
+
+</RelativeLayout>

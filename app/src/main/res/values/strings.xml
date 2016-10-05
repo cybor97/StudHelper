@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">StudHelper</string>
+    <string name="time_preinit">Preparing time&#8230;</string>
+    <string name="info_preinit">Preparing lesson info&#8230;</string>
+    <string name="free_time">Lessons didn\'t begin or has been ended.</string>
+
+    <string name="lesson_time">TIME to end of lesson.</string>
+    <string name="break_time">TIME to end of break.</string>
+    <string name="lesson_info">There\'s NUMBER lesson NAME.</string>
+    <string name="break_info">There\'s break after NUMBER lesson NAME BEFORE.</string>
+
+    <string name="add_label">Add</string>
+    <string name="edit_label">Edit</string>
+    <string name="remove_label">Remove</string>
+    <string name="lesson_label">Lesson</string>
+    <string name="lessons_list_label">Lessons</string>
+    <string name="changes_list_label">Changes</string>
+    <string name="settings_label">Settings</string>
+    <string name="weekday_selection_label">Select weekday</string>
+    <string name="save_label">Save</string>
+    <string name="weekday_label">Weekday</string>
+    <string name="lesson_name_label">Lesson name</string>
+    <string name="lessons_begin_time_label">Lesson begin time</string>
+    <string name="break_duration_label">Break duration</string>
+    <string name="lesson_duration_label">Lesson duration</string>
+    <string name="group_label">Group</string>
+
+    <string name="lesson">lesson</string>
+    <string name="before">before</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds">seconds</string>
+    <string name="from">from</string>
+    <string name="to">to</string>
+
+    <string-array name="weekdays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+</resources>

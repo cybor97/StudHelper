@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Помощник студента</string>
+    <string name="time_preinit">Считаем время&#8230;</string>
+    <string name="info_preinit">Узнаем информацию о паре&#8230;</string>
+    <string name="free_time">Пары еще не начались или уже закончились.</string>
+
+    <string name="lesson_time">До конца пары осталось TIME.</string>
+    <string name="break_time">До конца перерыва осталось TIME.</string>
+    <string name="lesson_info">Сейчас NUMBER пара NAME.</string>
+    <string name="break_info">Сейчас перемена после NUMBER пары NAME BEFORE.</string>
+
+    <string name="add_label">Добавить</string>
+    <string name="edit_label">Изменить</string>
+    <string name="remove_label">Удалить</string>
+    <string name="lesson_label">Пара</string>
+    <string name="lessons_list_label">Пары</string>
+    <string name="changes_list_label">Замены</string>
+    <string name="settings_label">Настройки</string>
+    <string name="weekday_selection_label">Выберите день недели</string>
+    <string name="save_label">Сохранить</string>
+    <string name="weekday_label">День недели</string>
+    <string name="lesson_name_label">Название пары</string>
+    <string name="lessons_begin_time_label">Время начала пары</string>
+    <string name="break_duration_label">Длительность перемены</string>
+    <string name="lesson_duration_label">Длительность пары</string>
+    <string name="group_label">Группа</string>
+
+    <string name="lesson">пара</string>
+    <string name="before">перед</string>
+    <string name="hours">часов</string>
+    <string name="minutes">минут</string>
+    <string name="seconds">секунд</string>
+    <string name="from">от</string>
+    <string name="to">к</string>
+
+    <string-array name="weekdays">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+    </string-array>
+</resources>

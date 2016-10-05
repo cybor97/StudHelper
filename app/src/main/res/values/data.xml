@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back_button_symbol" translatable="false">◀</string>
+    <string name="configuration_table_create_string" translatable="false">
+        CREATE TABLE Configuration (
+        ID INTEGER PRIMARY KEY,
+        LessonsBeginTime INTEGER,
+        LessonDuration INTEGER,
+        AcademicGroup TEXT,
+        LessonsImageRemoveNeeded INTEGER);
+    </string>
+    <string name="lessons_table_create_string" translatable="false">
+        CREATE TABLE Lessons (
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        Name STRING,
+        Weekday INTEGER,
+        BreakDuration INTEGER);
+    </string>
+    <string name="groups_table_create_string" translatable="false">
+        CREATE TABLE Groups (
+        ID INTEGER PRIMARY KEY,
+        Name STRING,
+        URL STRING);
+    </string>
+    <string name="testServerResponse" translatable="false">Феодосийский политехнический техникум</string>
+    <string name="groups_menu_url" translatable="false">http://feopoliteh.ru/?page_id=90</string>
+    <string name="replaces_list_url" translatable="false">http://feopoliteh.ru/?page_id=96</string>
+
+    <string name="yandex_api_key" translatable="false">2fac9387-3aeb-40a2-9089-ea8610ca2c88</string>
+
+    <string-array name="default_lessons_time" translatable="false">
+        <item>8:30:10</item> <!--Caution! 3rd block is BREAK LENGTH in minutes.-->
+        <item>10:10:40</item>
+        <item>12:20:10</item>
+        <item>14:0:10</item>
+        <item>15:40:0</item>
+    </string-array>
+</resources>

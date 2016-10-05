@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#232323"
+    tools:context="com.cybor.studhelper.MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/delimiter"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/header_background"/>
+
+    <TextView
+        android:id="@+id/time_tv"
+        android:background="#AA232323"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/clock"
+        android:layout_toStartOf="@+id/clock"
+        android:text="@string/time_preinit"/>
+
+    <AnalogClock
+        android:id="@+id/clock"
+        android:background="#AA232323"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/info_tv"
+        android:background="#AA232323"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toEndOf="@+id/clock"
+        android:layout_toRightOf="@+id/clock"
+        android:gravity="end"
+        android:text="@string/info_preinit"/>
+
+    <View
+        android:id="@+id/delimiter"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/clock"
+        android:background="#151515"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/loading_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:indeterminate="true"/>
+
+        <Spinner
+            android:id="@+id/groups_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"/>
+
+        <Button
+            android:id="@+id/lessons_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_background"
+            android:text="@string/lessons_list_label"
+            android:textColor="#bebebe"
+            android:textSize="10pt"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/changes_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_background"
+            android:text="@string/changes_list_label"
+            android:textColor="#bebebe"
+            android:textSize="10pt"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/settings_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_background"
+            android:text="@string/settings_label"
+            android:textColor="#bebebe"
+            android:textSize="10pt"/>
+    </LinearLayout>
+</RelativeLayout>
