@@ -30,7 +30,7 @@
 
     <string-array name="default_lessons_time" translatable="false">
         <item>8:30:10</item> <!--Caution! 3rd block is BREAK LENGTH in minutes.-->
-        <item>10:10:40</item>
+        <item>10:10:LONG_BREAK</item>
         <item>12:20:10</item>
         <item>14:0:10</item>
         <item>15:40:0</item>

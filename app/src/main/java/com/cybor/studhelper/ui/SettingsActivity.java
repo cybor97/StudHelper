@@ -1,4 +1,4 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,8 +6,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
+import com.cybor.studhelper.R;
+import com.cybor.studhelper.data.Configuration;
+import com.cybor.studhelper.utils.Utils;
 
 public class SettingsActivity extends Activity implements View.OnClickListener
 {
@@ -40,15 +41,9 @@ public class SettingsActivity extends Activity implements View.OnClickListener
     public void onBackPressed()
     {
         if (lessonsBeginTimeET.getText().length() > 0)
-        {
-            String[] data = lessonsBeginTimeET.getText().toString().split(":");
-            Configuration.getInstance().setLessonsBeginTime(new DateTime(1970, 1, 1, Integer.parseInt(data[0]), Integer.parseInt(data[1])));
-        }
+            Configuration.getInstance().setLessonsBeginTime(Utils.parseTime(lessonsBeginTimeET.getText().toString()));
         if (lessonDurationET.getText().length() > 0)
-        {
-            String[] data = lessonDurationET.getText().toString().split(":");
-            Configuration.getInstance().setLessonDuration(new Duration((Integer.parseInt(data[0]) * 60 + Integer.parseInt(data[1])) * 60 * 1000));
-        }
+            Configuration.getInstance().setLessonDuration(Utils.parseDuration(lessonDurationET.getText().toString()));
         super.onBackPressed();
         overridePendingTransition(R.anim.activity_enter, R.anim.activity_back_leave);
     }

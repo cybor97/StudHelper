@@ -1,6 +1,8 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.utils;
 
 import android.content.Context;
+
+import com.cybor.studhelper.R;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -37,6 +39,21 @@ public class Utils
         return builder.toFormatter().print(duration.toPeriod());
     }
 
+    public static DateTime parseTime(String source)
+    {
+        String[] data = source.split(":");
+        if (data.length == 2)
+            return new DateTime(1970, 1, 1, Integer.parseInt(data[0]), Integer.parseInt(data[1]));
+        return null;
+    }
+
+    public static Duration parseDuration(String source)
+    {
+        String[] data = source.split(":");
+        if (data.length == 2)
+            return new Duration((Integer.parseInt(data[0]) * 60 + Integer.parseInt(data[1])) * 60 * 1000);
+        return null;
+    }
 
     public static DateTime getCurrentTime()
     {
@@ -62,19 +79,18 @@ public class Utils
         {
             new FileOutputStream(localUrl).write(data);
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public static byte[] downloadData(String url)
     {
         try
         {
-            String[] blocks=url.split("/");
-            String baseUrl=url.split(blocks[blocks.length-1])[0];
-            String filename=blocks[blocks.length-1];
+            String[] blocks = url.split("/");
+            String baseUrl = url.split(blocks[blocks.length - 1])[0];
+            String filename = blocks[blocks.length - 1];
 
-            URL toDownload = new URL(baseUrl+ URLEncoder.encode(filename,"UTF-8"));
+            URL toDownload = new URL(baseUrl + URLEncoder.encode(filename, "UTF-8"));
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             byte[] chunk = new byte[4096];
@@ -84,8 +100,7 @@ public class Utils
             while ((bytesRead = stream.read(chunk)) > 0)
                 outputStream.write(chunk, 0, bytesRead);
             return outputStream.toByteArray();
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
             return null;

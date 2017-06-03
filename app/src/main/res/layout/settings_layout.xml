@@ -37,8 +37,8 @@
         android:id="@+id/lessons_begin_time_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="time"
-        android:background="#303030"/>
+        android:background="#303030"
+        android:inputType="time"/>
 
 
     <TextView
@@ -49,6 +49,30 @@
         android:id="@+id/lesson_duration_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="time"
-        android:background="#303030"/>
+        android:background="#303030"
+        android:inputType="time"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/break_duration_label"/>
+
+    <EditText
+        android:id="@+id/break_duration_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#303030"
+        android:inputType="time"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/long_break_duration_label"/>
+
+    <EditText
+        android:id="@+id/long_break_duration_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#303030"
+        android:inputType="time"/>
 </LinearLayout>

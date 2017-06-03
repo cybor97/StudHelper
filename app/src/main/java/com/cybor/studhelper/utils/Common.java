@@ -1,4 +1,4 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.utils;
 
 import android.content.Context;
 

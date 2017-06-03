@@ -1,4 +1,4 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.ui;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -9,18 +9,23 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.cybor.studhelper.R;
+import com.cybor.studhelper.data.Configuration;
+import com.cybor.studhelper.utils.Common;
+import com.cybor.studhelper.utils.OnTouch_Scale;
+import com.cybor.studhelper.utils.Utils;
+
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
 
 public class ReplacesListImageActivity extends Activity implements Runnable, View.OnClickListener
-{//TODO:Implement
+{
+    public String group;
     Thread replacesImageInitilizer;
 
     @Override
@@ -44,13 +49,13 @@ public class ReplacesListImageActivity extends Activity implements Runnable, Vie
                         new Duration(new DateTime(replacesImageFile.lastModified()), DateTime.now()).getStandardDays() > 1) &&//Reasons to download file
                 Utils.checkServerConnection(this)) //But only if has server connection
         {
-            String group = Configuration.getInstance().getGroup();
+            runOnUiThread(() -> group = Configuration.getInstance().getGroup());
             if (group != null)
                 try
                 {
                     Document document = Jsoup.connect(getString(R.string.replaces_list_url)).get();
                     Utils.downloadFile(document.getElementsByClass("aligncenter").attr("src"), replacesImageFile.getPath());
-                    configuration.setLessonsImageRemoveNeeded(false);
+                    runOnUiThread(() -> configuration.setLessonsImageRemoveNeeded(false));
                 } catch (IOException e)
                 {
                     Log.e("GetLessonsImageFile", e.toString());

@@ -1,17 +1,28 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.ui;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.util.Log;
 import android.widget.RemoteViews;
+
+import com.cybor.studhelper.R;
+import com.cybor.studhelper.data.Configuration;
+import com.cybor.studhelper.data.Lesson;
+import com.cybor.studhelper.data.LessonState;
+import com.cybor.studhelper.utils.Utils;
 
 import org.joda.time.DateTime;
 
 import java.util.List;
 
+import io.realm.Realm;
+
 public class MainWidget extends AppWidgetProvider
 {
     private static List<Lesson> lessons;
+    private static Thread updater;
+    private static RemoteViews widget;
 
     @Override
     public void onEnabled(Context context)
@@ -20,17 +31,42 @@ public class MainWidget extends AppWidgetProvider
     }
 
     @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
+    public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds)
     {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        appWidgetManager.updateAppWidget(appWidgetIds, updateDisplayData(context));
+        if (updater == null || !updater.isAlive())
+        {
+            updater = new Thread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    while (!Thread.interrupted())
+                        try
+                        {
+                            appWidgetManager.updateAppWidget(appWidgetIds, updateDisplayData(context));
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e)
+                        {
+                            Log.i("Interrupt", "Interrupted exception received. Finishing...");
+                            break;
+                        }
+                }
+            });
+            updater.start();
+        }
     }
 
-    RemoteViews updateDisplayData(Context context)
+    RemoteViews updateDisplayData(final Context context)
     {
+        if (widget == null)
+            widget = new RemoteViews(context.getPackageName(), R.layout.main_widget);
+        Configuration.init(context);
         if (lessons == null)
-            lessons = new DBHolder(context).getLessons(DateTime.now().getDayOfWeek());
-        RemoteViews widget = new RemoteViews(context.getPackageName(), R.layout.main_widget);
+            lessons = Realm.getDefaultInstance()
+                    .where(Lesson.class)
+                    .equalTo("weekday", DateTime.now().getDayOfWeek())
+                    .findAll();
         LessonState state = Lesson.getState(lessons);
         String durationString = "", lessonName = "", beforeName = "";
         Integer number = 0;

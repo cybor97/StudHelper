@@ -22,8 +22,10 @@
     <string name="lesson_name_label">Lesson name</string>
     <string name="lessons_begin_time_label">Lesson begin time</string>
     <string name="break_duration_label">Break duration</string>
+    <string name="long_break_duration_label">Long break duration</string>
     <string name="lesson_duration_label">Lesson duration</string>
     <string name="group_label">Group</string>
+    <string name="incollege_label">InCollege system</string>
 
     <string name="lesson">lesson</string>
     <string name="before">before</string>
@@ -45,4 +47,6 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
+
+    <string name="network_error">Network connection error!</string>
 </resources>

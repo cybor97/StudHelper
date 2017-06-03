@@ -1,4 +1,4 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.utils;
 
 import android.graphics.Matrix;
 import android.graphics.PointF;
@@ -8,12 +8,11 @@ import android.widget.ImageView;
 
 public class OnTouch_Scale implements View.OnTouchListener
 {
-    Matrix matrix = new Matrix();
-    Matrix savedMatrix = new Matrix();
-
     static final int NONE = 0;
     static final int DRAG = 1;
     static final int ZOOM = 2;
+    Matrix matrix = new Matrix();
+    Matrix savedMatrix = new Matrix();
     int mode = NONE;
 
     PointF start = new PointF();

@@ -1,7 +1,9 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.data;
 
 import android.content.Context;
-import android.util.Log;
+
+import com.cybor.studhelper.R;
+import com.cybor.studhelper.utils.Utils;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
@@ -9,35 +11,19 @@ import org.joda.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lesson
+import io.realm.RealmObject;
+
+public class Lesson extends RealmObject
 {
+    public String name;
     private int id = -1;
-    int weekday;
-    String name;
-    DateTime beginTime;
-    Duration breakDuration;
+    private int weekday;
+    private long beginTimeStamp;
+    private long breakDurationStamp;
 
-    public int getID()
+    public Lesson()
     {
-        return id;
-    }
 
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
-    public DateTime getEndTime()
-    {
-        Log.d("getEndTime",""+beginTime);
-        Log.d("getEndTime",""+Configuration.getInstance());
-        Log.d("getEndTime",""+Configuration.getInstance().getLessonDuration());
-        return beginTime.plus(Configuration.getInstance().getLessonDuration());
-    }
-
-    public DateTime getBreakEndTime()
-    {
-        return getEndTime().plus(breakDuration);
     }
 
     public Lesson(Integer id, String name, int weekday, DateTime beginTime, Duration breakDuration)
@@ -55,28 +41,8 @@ public class Lesson
     public Lesson(int weekday, DateTime beginTime, Duration breakDuration)
     {
         this.weekday = weekday;
-        this.beginTime = beginTime;
-        this.breakDuration = breakDuration;
-    }
-
-    public Boolean isCurrent()
-    {
-        DateTime time = Utils.getCurrentTime();
-        return time.isAfter(beginTime) && time.isBefore(getEndTime());
-    }
-
-    public Boolean isCurrentBreak()
-    {
-        DateTime time = Utils.getCurrentTime();
-        return time.isAfter(getEndTime()) && time.isBefore(getEndTime().plus(breakDuration));
-    }
-
-    public Duration getTimeToEnd()
-    {
-        DateTime time = Utils.getCurrentTime();
-        if (isCurrent()) return new Duration(time, getEndTime());
-        else if (isCurrentBreak()) return new Duration(time, getBreakEndTime());
-        else return Duration.ZERO;
+        this.beginTimeStamp = beginTime.getMillis();
+        this.breakDurationStamp = breakDuration.getMillis();
     }
 
     public static LessonState getState(List<Lesson> lessons)
@@ -100,7 +66,7 @@ public class Lesson
         {
             boolean exchanged = false;
             for (int i = 0; i < lessons.length - n - 1; i++)
-                if (lessons[i + 1].beginTime.isBefore(lessons[i].beginTime))
+                if (lessons[i + 1].getBeginTime().isBefore(lessons[i].getBeginTime()))
                 {
                     Lesson tmp = lessons[i + 1];
                     lessons[i + 1] = lessons[i];
@@ -124,9 +90,64 @@ public class Lesson
                         new DateTime(1970, 1, 1,
                                 Integer.parseInt(blocks[0]),
                                 Integer.parseInt(blocks[1])),
-                        new Duration(Integer.parseInt(blocks[2]) * 60 * 1000)));
+                        blocks[2].equals("LONG_BREAK") ?
+                                Configuration.getInstance().getLongBreakDuration() :
+                                Configuration.getInstance().getBreakDuration()));
             }
         return result;
+    }
+
+    public int getID()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public DateTime getEndTime()
+    {
+        DateTime beginTime = new DateTime(beginTimeStamp);
+        return beginTime.plus(Configuration.getInstance().getLessonDuration());
+    }
+
+    public DateTime getBeginTime()
+    {
+        return new DateTime(beginTimeStamp);
+    }
+
+    public Duration getBreakDuration()
+    {
+        return new Duration(breakDurationStamp);
+    }
+
+    public DateTime getBreakEndTime()
+    {
+        Duration breakDuration = new Duration(breakDurationStamp);
+        return getEndTime().plus(breakDuration);
+    }
+
+    public Boolean isCurrent()
+    {
+        DateTime time = Utils.getCurrentTime();
+        DateTime beginTime = new DateTime(beginTimeStamp);
+        return time.isAfter(beginTime) && time.isBefore(getEndTime());
+    }
+
+    public Boolean isCurrentBreak()
+    {
+        DateTime time = Utils.getCurrentTime();
+        return time.isAfter(getEndTime()) && time.isBefore(getEndTime().plus(getBreakDuration()));
+    }
+
+    public Duration getTimeToEnd()
+    {
+        DateTime time = Utils.getCurrentTime();
+        if (isCurrent()) return new Duration(time, getEndTime());
+        else if (isCurrentBreak()) return new Duration(time, getBreakEndTime());
+        else return Duration.ZERO;
     }
 
 }

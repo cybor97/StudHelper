@@ -1,4 +1,4 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.data;
 
 
 public class LessonState
@@ -8,6 +8,12 @@ public class LessonState
     private Lesson _lesson;
     private byte _state;
 
+    public LessonState(Lesson lesson, byte state)
+    {
+        _lesson = lesson;
+        _state = state;
+    }
+
     public Lesson getLesson()
     {
         return _lesson;
@@ -16,11 +22,5 @@ public class LessonState
     public byte getState()
     {
         return _state;
-    }
-
-    public LessonState(Lesson lesson, byte state)
-    {
-        _lesson = lesson;
-        _state = state;
     }
 }

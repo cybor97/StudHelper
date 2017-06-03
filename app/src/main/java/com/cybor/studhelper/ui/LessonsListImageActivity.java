@@ -1,4 +1,4 @@
-package com.cybor.studhelper;
+package com.cybor.studhelper.ui;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -8,6 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+
+import com.cybor.studhelper.R;
+import com.cybor.studhelper.data.Configuration;
+import com.cybor.studhelper.utils.Common;
+import com.cybor.studhelper.utils.OnTouch_Scale;
+import com.cybor.studhelper.utils.Utils;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
@@ -22,6 +28,8 @@ import java.io.IOException;
 public class LessonsListImageActivity extends Activity implements Runnable, View.OnClickListener
 {
     Thread lessonsImageInitilizer;
+    String group;
+    private boolean lessonsRemoveNeeded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,10 +50,10 @@ public class LessonsListImageActivity extends Activity implements Runnable, View
         while (!Thread.interrupted() &&//Die fast if user wants it!
                 (!lessonsImageFile.exists() ||
                         new Duration(new DateTime(lessonsImageFile.lastModified()), DateTime.now()).getStandardDays() > 1 ||
-                        configuration.isLessonsImageRemoveNeeded()) &&//Reasons to download file
+                        isLessonsImageRemoveNeeded(configuration)) &&//Reasons to download file
                 Utils.checkServerConnection(this)) //But only if has server connection
         {
-            String group = Configuration.getInstance().getGroup();
+            runOnUiThread(() -> group = Configuration.getInstance().getGroup());
             if (group != null)
                 try
                 {
@@ -59,23 +67,19 @@ public class LessonsListImageActivity extends Activity implements Runnable, View
                     {
                         document = Jsoup.connect(groupURL).get();
                         Utils.downloadFile(document.getElementsByClass("aligncenter").attr("src"), lessonsImageFile.getPath());
-                        configuration.setLessonsImageRemoveNeeded(false);
+                        runOnUiThread(() -> configuration.setLessonsImageRemoveNeeded(false));
                     }
                 } catch (IOException e)
                 {
                     Log.e("GetLessonsImageFile", e.toString());
                 }
         }
-        runOnUiThread(new Runnable()
+        runOnUiThread(() ->
         {
-            @Override
-            public void run()
-            {
-                ImageView lessonsIV = (ImageView) findViewById(R.id.lessons_iv);
-                lessonsIV.setImageURI(Uri.fromFile(lessonsImageFile));
-                lessonsIV.setOnTouchListener(new OnTouch_Scale());
-                ((ContentLoadingProgressBar) findViewById(R.id.loading_bar)).hide();
-            }
+            ImageView lessonsIV = (ImageView) findViewById(R.id.lessons_iv);
+            lessonsIV.setImageURI(Uri.fromFile(lessonsImageFile));
+            lessonsIV.setOnTouchListener(new OnTouch_Scale());
+            ((ContentLoadingProgressBar) findViewById(R.id.loading_bar)).hide();
         });
     }
 
@@ -106,4 +110,9 @@ public class LessonsListImageActivity extends Activity implements Runnable, View
         overridePendingTransition(R.anim.activity_enter, R.anim.activity_back_leave);
     }
 
+    public boolean isLessonsImageRemoveNeeded(Configuration configuration)
+    {
+        runOnUiThread(() -> lessonsRemoveNeeded = configuration.isLessonsImageRemoveNeeded());
+        return lessonsRemoveNeeded;
+    }
 }

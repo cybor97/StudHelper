@@ -22,8 +22,10 @@
     <string name="lesson_name_label">Название пары</string>
     <string name="lessons_begin_time_label">Время начала пары</string>
     <string name="break_duration_label">Длительность перемены</string>
+    <string name="long_break_duration_label">Длительность большой перемены</string>
     <string name="lesson_duration_label">Длительность пары</string>
     <string name="group_label">Группа</string>
+    <string name="incollege_label">Система InCollege</string>
 
     <string name="lesson">пара</string>
     <string name="before">перед</string>
@@ -42,4 +44,6 @@
         <item>Суббота</item>
         <item>Воскресенье</item>
     </string-array>
+
+    <string name="network_error">Ошибка подключения к сети!</string>
 </resources>
