@@ -53,16 +53,17 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         setContentView(R.layout.main);
         realm = Realm.getDefaultInstance();
 
-        timeTV = (TextView) findViewById(R.id.timeTV);
-        infoTV = (TextView) findViewById(R.id.infoTV);
-        groupsSpinner = (Spinner) findViewById(R.id.groupsSpinner);
+        timeTV = (TextView) findViewById(R.id.time_tv);
+        infoTV = (TextView) findViewById(R.id.info_tv);
+        groupsSpinner = (Spinner) findViewById(R.id.groups_spinner);
 
-        lessonsButton = findViewById(R.id.lessonsButton);
-        changesButton = findViewById(R.id.changesButton);
+        lessonsButton = findViewById(R.id.lessons_button);
+        changesButton = findViewById(R.id.changes_button);
 
         lessonsButton.setOnClickListener(this);
         changesButton.setOnClickListener(this);
-        findViewById(R.id.settingsButton).setOnClickListener(this);
+        findViewById(R.id.settings_button).setOnClickListener(this);
+        findViewById(R.id.incollege_button).setOnClickListener(this);
 
         initDisplayUpdater();
         initGroupsList();
@@ -86,16 +87,23 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     {
         switch (v.getId())
         {
-            case R.id.lessonsButton:
+            case R.id.lessons_button:
                 startActivity(new Intent(this, LessonsListImageActivity.class));
                 break;
-            case R.id.changesButton:
+            case R.id.changes_button:
                 startActivity(new Intent(this, ReplacesListImageActivity.class));
                 break;
-            case R.id.settingsButton:
+            case R.id.incollege_button:
+                startActivity(new Intent(this, InCollegeActivity.class));
+                break;
+            case R.id.settings_button:
+                Configuration configuration = Configuration.getInstance();
                 startActivity(new Intent(this, SettingsActivity.class)
-                        .putExtra("beginTime", Utils.getFormattedTime(Configuration.getInstance().getLessonsBeginTime()))
-                        .putExtra("lessonDuration", Utils.getFormattedDuration(Configuration.getInstance().getLessonDuration(), false)));
+                        .putExtra("beginTime", Utils.getFormattedTime(configuration.getLessonsBeginTime()))
+                        .putExtra("lessonDuration", Utils.getFormattedDuration(configuration.getLessonDuration(), false))
+                        .putExtra("breakDuration", Utils.getFormattedDuration(configuration.getBreakDuration(), false))
+                        .putExtra("longBreakDuration", Utils.getFormattedDuration(configuration.getLongBreakDuration(), false))
+                        .putExtra("inCollegeServerHostname", configuration.getInCollegeHostName()));
                 break;
         }
         overridePendingTransition(R.anim.activity_enter, R.anim.activity_leave);
@@ -120,18 +128,16 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
                         Document document = Jsoup.connect(getString(R.string.groups_menu_url)).get();
                         Elements data = document.getElementsByAttributeValue("style", "font-size: large;");
                         final List<Group> groups = new ArrayList<>();
+                        //noinspection Convert2streamapi
                         for (Element current : data)
                             groups.add(new Group(current.text(), current.parent().parent().attr("href")));
 
 
-                        runOnUiThread(() ->
+                        runOnUiThread(() -> realm.executeTransaction(transaction ->
                         {
-                            realm.executeTransaction(transaction ->
-                            {
-                                realm.delete(Group.class);
-                                realm.copyToRealm(groups);
-                            });
-                        });
+                            realm.delete(Group.class);
+                            realm.copyToRealm(groups);
+                        }));
                     }
                     runOnUiThread(() ->
                     {
@@ -152,7 +158,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
                             groupsSpinner.setAdapter(adapter);
                             groupsSpinner.setSelection(currentGroupIndex, true);
                             groupsSpinner.setOnItemSelectedListener(MainActivity.this);
-                            ((ContentLoadingProgressBar) findViewById(R.id.loadingBar)).hide();
+                            ((ContentLoadingProgressBar) findViewById(R.id.loading_bar)).hide();
                             changesButton.setVisibility(View.VISIBLE);
                             lessonsButton.setVisibility(View.VISIBLE);
                         }
@@ -226,7 +232,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        if (((Spinner) view.getParent()).getId() == R.id.groupsSpinner)
+        if (((Spinner) view.getParent()).getId() == R.id.groups_spinner)
             if (!((String) groupsSpinner.getSelectedItem()).isEmpty())
             {
                 Configuration configuration = Configuration.getInstance();

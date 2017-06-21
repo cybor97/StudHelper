@@ -27,6 +27,10 @@ public class Configuration extends RealmObject
 
     private String group;
 
+    private String inCollegeHostName = "192.168.1.1";
+
+    private String token = "";
+
     public Configuration()
     {
     }
@@ -118,5 +122,25 @@ public class Configuration extends RealmObject
     public void setLongBreakDuration(Duration longBreakDuration)
     {
         realm.executeTransaction(transaction -> this.longBreakDuration = longBreakDuration.getMillis());
+    }
+
+    public String getInCollegeHostName()
+    {
+        return inCollegeHostName;
+    }
+
+    public void setInCollegeHostName(String inCollegeHostName)
+    {
+        Realm.getDefaultInstance().executeTransaction(realm -> this.inCollegeHostName = inCollegeHostName);
+    }
+
+    public String getToken()
+    {
+        return token;
+    }
+
+    public void setToken(String token)
+    {
+        Realm.getDefaultInstance().executeTransaction(realm -> this.token = token);
     }
 }

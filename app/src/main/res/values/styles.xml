@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_background_color">#232323</color>
+
+    <style name="StudHelperAppTheme" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowBackground">@color/app_background_color</item>
+    </style>
+
+</resources>

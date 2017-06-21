@@ -49,4 +49,11 @@
     <string name="add_widget">Add widget</string>
 
     <string name="network_error">Network connection error!</string>
+    <string name="username">Login</string>
+    <string name="password">Password</string>
+    <string name="login_button_label">Login</string>
+    <string name="incollege_server_hostname_label">InCollege server address</string>
+    <string name="marks_button">Your progress</string>
+    <string name="chat_button">Chat</string>
+    <string name="inner_error">Sorry, inner error occured</string>
 </resources>

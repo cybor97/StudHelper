@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#232323"
               android:orientation="vertical">
 
     <LinearLayout
@@ -33,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/lessons_begin_time_label"/>
+
     <EditText
         android:id="@+id/lessons_begin_time_et"
         android:layout_width="match_parent"
@@ -45,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/lesson_duration_label"/>
+
     <EditText
         android:id="@+id/lesson_duration_et"
         android:layout_width="match_parent"
@@ -71,6 +72,18 @@
 
     <EditText
         android:id="@+id/long_break_duration_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#303030"
+        android:inputType="time"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/incollege_server_hostname_label"/>
+
+    <EditText
+        android:id="@+id/incollege_server_hostname_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#303030"

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_background"
+                android:minHeight="60dp"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/mark_data_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/mark_value_tv"
+        android:layout_toStartOf="@+id/mark_value_tv">
+
+        <TextView
+            android:id="@+id/subject_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="something"
+            android:textColor="#EEEEEE"
+            android:textSize="9pt"/>
+
+        <TextView
+            android:id="@+id/date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subject_tv"
+            android:text="something else"
+            android:textColor="#CCCCCC"
+            android:textSize="7pt"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="10dp"
+        android:layout_alignBottom="@+id/mark_value_tv"
+        android:layout_alignTop="@+id/mark_value_tv"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/mark_data_container"
+        android:layout_toLeftOf="@+id/mark_value_tv"
+        android:layout_toRightOf="@+id/mark_data_container"
+        android:layout_toStartOf="@+id/mark_value_tv"
+        android:background="#000"/>
+
+    <TextView
+        android:id="@+id/mark_value_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginStart="5dp"
+        android:width="60dp"
+        android:gravity="center"
+        android:text="5"
+        android:textAlignment="gravity"
+        android:textColor="#00FF00"
+        android:textSize="16pt"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

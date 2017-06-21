@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#232323"
     tools:context="com.cybor.studhelper.ui.MainActivity">
 
     <ImageView
@@ -16,7 +15,7 @@
         android:src="@mipmap/header_background"/>
 
     <TextView
-        android:id="@+id/timeTV"
+        android:id="@+id/time_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -34,7 +33,7 @@
         android:background="#AA232323"/>
 
     <TextView
-        android:id="@+id/infoTV"
+        android:id="@+id/info_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -59,20 +58,20 @@
         android:orientation="vertical">
 
         <android.support.v4.widget.ContentLoadingProgressBar
-            android:id="@+id/loadingBar"
+            android:id="@+id/loading_bar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminate="true"/>
 
         <Spinner
-            android:id="@+id/groupsSpinner"
+            android:id="@+id/groups_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"/>
 
         <Button
-            android:id="@+id/lessonsButton"
+            android:id="@+id/lessons_button"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/button_background"
@@ -82,7 +81,7 @@
             android:visibility="gone"/>
 
         <Button
-            android:id="@+id/changesButton"
+            android:id="@+id/changes_button"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/button_background"
@@ -92,7 +91,7 @@
             android:visibility="gone"/>
 
         <Button
-            android:id="@+id/settingsButton"
+            android:id="@+id/settings_button"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/button_background"
@@ -101,7 +100,7 @@
             android:textSize="10pt"/>
 
         <Button
-            android:id="@+id/incollegeButton"
+            android:id="@+id/incollege_button"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/button_background"

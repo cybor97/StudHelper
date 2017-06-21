@@ -46,4 +46,11 @@
     </string-array>
 
     <string name="network_error">Ошибка подключения к сети!</string>
+    <string name="username">Логин</string>
+    <string name="password">пароль</string>
+    <string name="login_button_label">Войти</string>
+    <string name="incollege_server_hostname_label">Адрес сервера InCollege</string>
+    <string name="marks_button">Ваша успеваемость</string>
+    <string name="chat_button">Чат</string>
+    <string name="inner_error">Извините, произошла внутренняя ошибка</string>
 </resources>
