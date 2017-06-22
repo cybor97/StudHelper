@@ -1,28 +1,9 @@
 Application, that will help students with their hard life
-This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+Current version is 2.0
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+To build this app you need:
+1) Android Studio >2.3
+2) Java JDK 8+(no matter Oracle or open)
+3) Gradle Plugin >2.3
+4) Phone or emulator with Android OS >4.1.2
