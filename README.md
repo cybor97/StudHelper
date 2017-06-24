@@ -4,11 +4,13 @@ Current version is 2.0
 
 To build this app you need:
 * Android Studio >2.2
+* Android SDK for API 16 and API23
 * Java JDK 8+(no matter Oracle or open)
 * Gradle Plugin >2.4
-* Phone or emulator with Android OS >4.1.2
+* ProGuard(If shrink is needed)
+* Phone or emulator with Android OS >4.1.2(For debug)
 
-###InCollege###
+**InCollege**
 Copyright (C) 2017  [CYBOR]
 
     This program is free software: you can redistribute it and/or modify
